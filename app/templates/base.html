@@ -1,0 +1,35 @@
+<html> 
+  <head>
+    <title>Stock Trader's Companion</title> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">   
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-1">
+          <img src="{{ url_for('static', filename='stock.png') }}" height=90 width=90 style="margin:8px">   
+        </div>
+        <div class="col-md-9"> 
+          <div class="page-header">
+            <h1>Your one stop page for essential stocks
+            </h1><br>
+            <big>Various stocks comparison</big>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-default">     
+      <div class="container-fluid">
+	<ul class="nav navbar-nav">
+          <li><a href="{{url_for('index')}}">Home</a></li>     
+          <li><a href="{{url_for('search')}}">Search</a></li>    
+        </ul>
+      </div>   
+    </nav> 
+    <div class="container-fluid">
+    {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

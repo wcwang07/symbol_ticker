@@ -1,0 +1,90 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/style.css">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
+<style type="text/css">
+
+.paging-nav {
+  text-align: right;
+  padding-top: 2px;
+}
+
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #91b9e6;
+  color: white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background: #187ed5;
+  font-weight: bold;
+} </style>	
+
+</head>
+{% extends "base.html" %} 
+{% block content %} 
+<h3>{{title}}</h3> 
+<form action="" method="post" name="country_search"> 
+  {{form.hidden_tag()}}
+  <p> Please enter the ticker symbol you’d like to find information for:    
+    {{form.country_name(size=30)}}
+  </p>
+  <input type="submit" value="Search!" id="search">
+</form>
+<body>
+<br> <br>
+	{% if info %}
+	<table id="tableData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Price/Ticket</th>
+            </tr>
+          </thead>
+        <tbody>
+      		{% for p in info %}
+          	<tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            </tr>
+      		{% endfor %}
+          </tbody>
+        </table>
+	<h1>Render a Image Directly by matplotlib!</h1>
+	<img src="data:image/png;base64,{{img_data}}"/>
+		
+    {% endif %}
+	
+	<p id="pgraph"></p>
+	
+	
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>  
+<script src="/static/paging.js"></script>
+
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#tableData').paging({limit:5});
+			
+        });
+</script>
+
+
+ 
+ <br> <br>
+ <br> <br>
+{% endblock %} 
+<br> <br>
+</body>
+</html>
